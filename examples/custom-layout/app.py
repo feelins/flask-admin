@@ -9,6 +9,7 @@ from flask_admin.contrib.sqla import ModelView
 
 # Create application
 app = Flask(__name__)
+app.app_context().push()
 
 # Create dummy secrey key so we can use sessions
 app.config['SECRET_KEY'] = '123456790'
@@ -142,8 +143,8 @@ if __name__ == '__main__':
     # Build a sample db on the fly, if one does not exist yet.
     app_dir = op.realpath(os.path.dirname(__file__))
     database_path = op.join(app_dir, app.config['DATABASE_FILE'])
-    if not os.path.exists(database_path):
-        build_sample_db()
+    # if not os.path.exists(database_path):
+    #     build_sample_db()
 
     # Start app
     app.run(debug=True)
