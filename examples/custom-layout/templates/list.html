@@ -5,13 +5,19 @@
     <h2 id="brand">{{ admin_view.name|capitalize }} list</h2>
     {% if admin_view.can_create %}
     <div class="btn-menu">
-      <a href="{{ url_for('.create_view', url=return_url) }}" class="btn btn-primary pull-right">{{ _gettext('Create') }}</a>
+      <a href="{{ url_for('.create_view', url=return_url) }}" title="{{ _gettext('Create New Record') }}" class="btn btn-primary pull-right">{{ _gettext('Create') }}</a>
     </div>
     {% endif %}
     
     {% if filter_groups %}
     <div class="btn-group btn-menu">
       {{ model_layout.filter_options(btn_class='btn dropdown-toggle btn-title') }}
+    </div>
+    {% endif %}
+
+    {% if admin_view.can_export %}
+    <div class="btn-group btn-menu">
+        {{ model_layout.export_options() }}
     </div>
     {% endif %}
     
