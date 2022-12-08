@@ -56,7 +56,7 @@ class Evaluation(db.Model):
 
 class Version(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    other_comment = db.Column(db.Unicode(64))
+    other_comment = db.Column(db.Text)
     update_time = db.Column(db.DateTime, default=pd.to_datetime("today"))
 
     def __unicode__(self):
