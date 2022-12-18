@@ -59,8 +59,6 @@ class AnalyticsView(admin.BaseView):
     def index(self):
         return self.render('analytics_index.html')
 
-# Customized admin interface
-
 
 class CustomView(ModelView):
     list_template = 'list.html'
@@ -70,7 +68,7 @@ class CustomView(ModelView):
 
 class ScoreRecordAdmin(CustomView):
     can_export = True
-    can_delete = False
+    # can_delete = False
     column_list = ('lang', 'score', 'update_date')
     column_searchable_list = ('lang', 'score', 'update_date')
     column_filters = ('lang', 'score', 'update_date')
@@ -82,7 +80,7 @@ class ScoreRecordAdmin(CustomView):
 
 class InformationAdmin(CustomView):
     can_export = True
-    can_delete = False
+    # can_delete = False
     # column_list不指定列，则会显示所有列
     column_list = ('lang', 'score', 'name', 'duration', 'update_date')
     column_searchable_list = ('name', 'lang')
@@ -94,22 +92,6 @@ class InformationAdmin(CustomView):
         name='姓名', duration='时长'
     )
     column_export_list = ('lang', 'score', 'name', 'duration', 'update_date')
-
-
-class VersionAdmin(CustomView):
-    can_export = True
-    can_delete = False
-    # column_list = ('engine_lang_name', 'engine_lang_id', 'engine_name', 'engine_id', 'version_build_time', 'version_number',
-    #                 'version_release_time', 'release_vcn', 'release_type', 'release_serviceid', 'release_type', 'internal_pack_info',
-    #                 'client_use_info', 'other_comment')
-    column_searchable_list = ('other_comment', 'update_time')
-    column_filters = ('other_comment', 'update_time')
-    can_view_details = True
-    column_labels = dict(update_time='更新日期', other_comment='备注'
-                         )
-    column_editable_list = ['other_comment', 'update_time']
-
-# Flask views
 
 
 @app.route('/')
@@ -174,7 +156,7 @@ if __name__ == '__main__':
     database_path = op.join(app_dir, app.config['DATABASE_FILE'])
     # print(database_path)
     # if not os.path.exists(database_path):
-    build_sample_db()
+    # build_sample_db()
     # workbook = Workbook(r'D:\001_WorkToolsFlow\flask-admin\examples\custom-layout\output.xlsx')
     # worksheet = workbook.add_worksheet()
     # # 传入数据库路径，db.s3db或者test.sqlite
